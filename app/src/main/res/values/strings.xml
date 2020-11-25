@@ -3,4 +3,10 @@
     <string name="load">Load</string>
     <string name="day_night">Day/Night</string>
     <string name="select_date">Select date</string>
+    <string name="city">City</string>
+    <string-array name="day_night">
+        <item>All</item> //0
+        <item>Day</item> //1
+        <item>Night</item> //2
+    </string-array>
 </resources>

@@ -3,4 +3,10 @@
     <string name="load">Загрузить</string>
     <string name="day_night">День/Ночь</string>
     <string name="select_date">Выберите дату</string>
+    <string name="city">Город</string>
+    <string-array name="day_night">
+        <item>Сутки</item> //0
+        <item>День</item> //1
+        <item>Ночь</item> //2
+    </string-array>
 </resources>
