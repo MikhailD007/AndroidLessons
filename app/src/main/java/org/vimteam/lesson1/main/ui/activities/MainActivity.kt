@@ -1,4 +1,4 @@
-package org.vimteam.lesson1
+package org.vimteam.lesson1.main.ui.activities
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -21,11 +22,16 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormat
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.vimteam.lesson1.R
+import org.vimteam.lesson1.main.base.MainConstants.LOG_TAG
+import org.vimteam.lesson1.main.domain.contracts.MainContract
+import org.vimteam.lesson1.main.domain.viewmodels.MainViewModel
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()   {
 
-    val LOG_TAG = "L1"
+    private val vm: MainContract.ViewModel by viewModel()
 
     private var autocompleteFragment: AutocompleteSupportFragment? = null
     private lateinit var datePickerDialog: DatePickerDialog
@@ -33,12 +39,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
+        //vm = ViewModelProvider(this)[MainViewModel::class.java]
+
         val crashlitics = FirebaseCrashlytics.getInstance()
         with(crashlitics) {
             setUserId("")
             setCustomKey("UserName", "Spectator")
             setCustomKey("UserPhone", "")
         }
+
+        vm.weatherData.observe(this) {
+            selectDateEditText.setText(it.city)
+        }
+
+        //------------------------------------------------------------------------------------
 
         initDateTimePicker(getString(R.string.select_date))
         selectDateEditText.setOnFocusChangeListener { _, b -> if (b) datePickerDialog.show(supportFragmentManager, "DatePickerDialog") }
