@@ -9,4 +9,8 @@
         <item>День</item> //1
         <item>Ночь</item> //2
     </string-array>
+    <string name="switch1">Переключатель</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Электронная почта</string>
+    <string name="checkbox">Отметка</string>
 </resources>

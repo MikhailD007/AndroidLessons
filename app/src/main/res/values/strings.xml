@@ -9,4 +9,8 @@
         <item>Day</item> //1
         <item>Night</item> //2
     </string-array>
+    <string name="switch1">Switch</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="checkbox">Check box</string>
 </resources>
