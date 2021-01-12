@@ -5,12 +5,44 @@
     <string name="select_date">Select date</string>
     <string name="city">City</string>
     <string-array name="day_night">
-        <item>All</item> //0
-        <item>Day</item> //1
-        <item>Night</item> //2
+        <item>All</item>
+        //0
+        <item>Day</item>
+        //1
+        <item>Night</item>
+        //2
     </string-array>
     <string name="switch1">Switch</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="checkbox">Check box</string>
+    <string name="calc_open">Open Calc</string>
+    <string name="calculate" translatable="false">=</string>
+    <string name="_0" translatable="false">0</string>
+    <string-array name="buttons">
+        <item>CE</item>     //clear - 0
+        <item>\u21E6</item> //backspace - 1
+        <item>\u221A</item> //sqrt - 2
+        <item>\u00F7</item> //divide - 3
+
+        <item>7</item>      //4
+        <item>8</item>      //5
+        <item>9</item>      //6
+        <item>\u00D7</item> //multiply - 7
+
+        <item>4</item>      //8
+        <item>5</item>      //9
+        <item>6</item>      //10
+        <item>-</item>      //minus -11
+
+        <item>1</item>      //12
+        <item>2</item>      //13
+        <item>3</item>      //14
+        <item>+</item>      //plus - 15
+
+        <item>+/-</item>    //change signature - 16
+        <item>0</item>      //17
+        <item>.</item>      //decimal dot - 18
+        <item>=</item>      //equals - 19
+    </string-array>
 </resources>

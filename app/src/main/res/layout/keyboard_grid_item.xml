@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_button_size"
+        android:text="Button"
+        android:textSize="@dimen/io_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/btn_yellow"
+        android:id="@+id/btnGrid"
+        android:gravity="center"
+        />
+</LinearLayout>

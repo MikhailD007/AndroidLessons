@@ -13,4 +13,5 @@
     <string name="phone">Телефон</string>
     <string name="email">Электронная почта</string>
     <string name="checkbox">Отметка</string>
+    <string name="calc_open">Открыть калькулятор</string>
 </resources>

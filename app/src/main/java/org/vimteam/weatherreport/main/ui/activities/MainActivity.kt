@@ -1,14 +1,12 @@
 package org.vimteam.weatherreport.main.ui.activities
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -16,18 +14,19 @@ import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.snackbar.Snackbar
-import org.vimteam.weatherreport.R.layout.activity_main
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.vimteam.weatherreport.R
+import org.vimteam.weatherreport.R.layout.activity_main
 import org.vimteam.weatherreport.main.base.MainConstants.LOG_TAG
 import org.vimteam.weatherreport.main.domain.contracts.MainContract
 import java.util.*
 
-class MainActivity : AppCompatActivity()   {
+class MainActivity : AppCompatActivity() {
 
     private val vm: MainContract.ViewModel by viewModel()
 
@@ -53,16 +52,35 @@ class MainActivity : AppCompatActivity()   {
         //------------------------------------------------------------------------------------
 
         initDateTimePicker(getString(R.string.select_date))
-        periodEditText.setOnFocusChangeListener { _, b -> if (b) datePickerDialog.show(supportFragmentManager, "DatePickerDialog") }
-        periodEditText.setOnClickListener { datePickerDialog.show(supportFragmentManager, "DatePickerDialog")}
+        periodEditText.setOnFocusChangeListener { _, b ->
+            if (b) datePickerDialog.show(
+                supportFragmentManager,
+                "DatePickerDialog"
+            )
+        }
+        periodEditText.setOnClickListener {
+            datePickerDialog.show(
+                supportFragmentManager,
+                "DatePickerDialog"
+            )
+        }
 
         if (!Places.isInitialized()) Places.initialize(this, getString(R.string.google_places_key))
-        autocompleteFragment = supportFragmentManager.findFragmentById(R.id.cityAutocompleteFragment) as AutocompleteSupportFragment?
+        autocompleteFragment =
+            supportFragmentManager.findFragmentById(R.id.cityAutocompleteFragment) as AutocompleteSupportFragment?
         autocompleteFragment?.setTypeFilter(TypeFilter.CITIES)
-        autocompleteFragment?.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.ADDRESS_COMPONENTS, Place.Field.LAT_LNG))
+        autocompleteFragment?.setPlaceFields(
+            listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.ADDRESS,
+                Place.Field.ADDRESS_COMPONENTS,
+                Place.Field.LAT_LNG
+            )
+        )
         autocompleteFragment?.setHint(getString(R.string.city))
-        autocompleteFragment?.setOnPlaceSelectedListener(object: PlaceSelectionListener {
-            override fun onPlaceSelected(place: Place) {  }
+        autocompleteFragment?.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {}
             override fun onError(status: Status) {
                 if (status.isCanceled) return
                 showError(status.toString())
@@ -72,10 +90,13 @@ class MainActivity : AppCompatActivity()   {
         clearCityButton.setOnClickListener {
             autocompleteFragment?.setText("")
         }
+        openCalcButton.setOnClickListener {
+            startActivity(Intent(this, CalcActivity::class.java))
+        }
     }
 
     fun showError(message: String) {
-        Log.e(LOG_TAG,"Error: $message")
+        Log.e(LOG_TAG, "Error: $message")
         this.hideKeyboard()
         Snackbar.make(findViewById(R.id.contentView), message, Snackbar.LENGTH_LONG).show()
     }
@@ -100,12 +121,18 @@ class MainActivity : AppCompatActivity()   {
 
     fun Activity.hideKeyboard() {
         val view = currentFocus ?: View(this)
-        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0)
+        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+            view.windowToken,
+            0
+        )
     }
 
     fun Activity.showKeyboard(view: View) {
         val view = currentFocus ?: View(this)
-        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(
+            view,
+            InputMethodManager.SHOW_IMPLICIT
+        )
     }
 
     fun localeDateToString(date: LocalDate, locale: Locale = Locale.getDefault()): String {
