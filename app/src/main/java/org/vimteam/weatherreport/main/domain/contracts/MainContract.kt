@@ -7,6 +7,5 @@ interface MainContract {
 
     abstract class ViewModel: androidx.lifecycle.ViewModel() {
         abstract val weatherData: LiveData<WeatherData>
-
     }
 }

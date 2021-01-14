@@ -45,4 +45,12 @@
         <item>.</item>      //decimal dot - 18
         <item>=</item>      //equals - 19
     </string-array>
+    <string name="infinity_symbol" translatable="false">∞</string>
+    <string name="infinity" translatable="false">Infinity</string>
+    <string name="incorrect_input_first_argument">Incorrect input for the first argument</string>
+    <string name="incorrect_input_second_argument">Incorrect input for the second argument</string>
+    <string name="incorrect_operation">Incorrect operation</string>
+    <string name="no_action_specified">No action specified</string>
+    <string name="unknown_action">Unknown action specified</string>
+    <string name="nan" translatable="false">NaN</string>
 </resources>

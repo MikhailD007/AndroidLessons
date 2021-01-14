@@ -5,13 +5,21 @@
     <string name="select_date">Выберите дату</string>
     <string name="city">Город</string>
     <string-array name="day_night">
-        <item>Сутки</item> //0
-        <item>День</item> //1
-        <item>Ночь</item> //2
+        <item>Сутки</item>
+        //0
+        <item>День</item>
+        //1
+        <item>Ночь</item>
+        //2
     </string-array>
     <string name="switch1">Переключатель</string>
     <string name="phone">Телефон</string>
     <string name="email">Электронная почта</string>
     <string name="checkbox">Отметка</string>
     <string name="calc_open">Открыть калькулятор</string>
+    <string name="incorrect_input_first_argument">Некорректные данные для первого аргумента</string>
+    <string name="incorrect_input_second_argument">Некорректные данные для второго аргумента</string>
+    <string name="no_action_specified">Не указана операция</string>
+    <string name="unknown_action">Неизвестная операция</string>
+    <string name="incorrect_operation">Некорректная операция</string>
 </resources>

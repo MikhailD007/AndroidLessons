@@ -7,12 +7,12 @@
     <GridView
         android:id="@+id/gridViewButtons"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/keyboard_frame_size"
+        android:layout_height="@dimen/keyboard_frame_height"
         android:background="@color/purple_700"
-        android:horizontalSpacing="2dp"
+        android:horizontalSpacing="@dimen/spacing"
         android:numColumns="4"
-        android:padding="2dp"
+        android:padding="@dimen/spacing"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="2dp" />
+        android:verticalSpacing="@dimen/spacing" />
 
 </LinearLayout>

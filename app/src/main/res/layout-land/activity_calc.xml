@@ -9,31 +9,30 @@
 
     <TextView
         android:id="@+id/ioTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:fontFamily="monospace"
         android:gravity="end|bottom"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:textSize="@dimen/io_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/baseline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/baseline" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/baseline"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/baseline_thickness"
+        android:layout_width="@dimen/baseline_thickness"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/small_margin"
         android:background="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/keyboardFrame" />
+        app:layout_constraintEnd_toStartOf="@id/keyboardFrame"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/keyboardFrame"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/keyboard_frame_width"
         android:layout_height="@dimen/keyboard_frame_height"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

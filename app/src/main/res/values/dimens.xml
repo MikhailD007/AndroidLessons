@@ -4,8 +4,13 @@
     <dimen name="small_margin">8dp</dimen>
     <dimen name="elevation">4dp</dimen>
     <dimen name="city_frame_height">45dp</dimen>
+
+    <!--calc-->
     <dimen name="io_text_size">40sp</dimen>
     <dimen name="keyboard_text_size">20sp</dimen>
     <dimen name="keyboard_button_size">60dp</dimen>
-    <dimen name="keyboard_frame_size">314dp</dimen>
+    <dimen name="keyboard_frame_height">314dp</dimen>
+    <dimen name="keyboard_frame_width">410dp</dimen>
+    <dimen name="baseline_thickness">1dp</dimen>
+    <dimen name="spacing">2dp</dimen>
 </resources>

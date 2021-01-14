@@ -1,11 +1,8 @@
 package org.vimteam.weatherreport.main.ui.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
@@ -23,6 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.vimteam.weatherreport.R
 import org.vimteam.weatherreport.R.layout.activity_main
 import org.vimteam.weatherreport.main.base.MainConstants.LOG_TAG
+import org.vimteam.weatherreport.main.base.hideKeyboard
 import org.vimteam.weatherreport.main.domain.contracts.MainContract
 import java.util.*
 
@@ -119,21 +117,6 @@ class MainActivity : AppCompatActivity() {
         datePickerDialog.setTitle(title)
     }
 
-    fun Activity.hideKeyboard() {
-        val view = currentFocus ?: View(this)
-        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
-            view.windowToken,
-            0
-        )
-    }
-
-    fun Activity.showKeyboard(view: View) {
-        val view = currentFocus ?: View(this)
-        (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(
-            view,
-            InputMethodManager.SHOW_IMPLICIT
-        )
-    }
 
     fun localeDateToString(date: LocalDate, locale: Locale = Locale.getDefault()): String {
         return date.toString(DateTimeFormat.shortDate().withLocale(locale))
