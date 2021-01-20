@@ -1,14 +1,14 @@
 package org.vimteam.weatherreport.main.domain.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import org.vimteam.weatherreport.App
-import org.vimteam.weatherreport.R
 import org.vimteam.weatherreport.main.domain.contracts.CalcContract
 import org.vimteam.weatherreport.main.domain.contracts.CalcRepositoryContract
+import org.vimteam.weatherreport.main.domain.contracts.ResourcesProviderContract
 import org.vimteam.weatherreport.main.domain.models.CalcActions
 
 class CalcViewModel(
-    private val repo: CalcRepositoryContract
+    private val repo: CalcRepositoryContract,
+    private val res: ResourcesProviderContract
 ) : CalcContract.ViewModel() {
 
     override val ioData = MutableLiveData<String>()
@@ -84,26 +84,24 @@ class CalcViewModel(
     override fun evaluateExpression() {
         val cd = repo.getCalcData()
         with(cd) {
-            if (firstArgument == "") throw Exception(App.appResources.getString(R.string.incorrect_input_first_argument))
-            if (action == null) throw Exception(App.appResources.getString(R.string.no_action_specified))
-            if (secondArgument == "") throw Exception(App.appResources.getString(R.string.incorrect_input_second_argument))
+            if (firstArgument == "") throw Exception(res.getString("incorrect_input_first_argument"))
+            if (action == null) throw Exception(res.getString("no_action_specified"))
+            if (secondArgument == "") throw Exception(res.getString("incorrect_input_second_argument"))
             val mFirstArgument =
-                if (abs(firstArgument) == App.appResources.getString(R.string.infinity_symbol)) App.appResources.getString(
-                    R.string.infinity
-                ) else firstArgument
+                if (abs(firstArgument) == res.getString("infinity_symbol")) res.getString("infinity") else firstArgument
             var firstArgumentDouble: Double = 0.0
             var secondArgumentDouble: Double = 0.0
             try {
                 firstArgumentDouble = mFirstArgument.toDouble()
             } catch (e: NumberFormatException) {
-                throw Exception(App.appResources.getString(R.string.incorrect_input_first_argument))
+                throw Exception(res.getString("incorrect_input_first_argument"))
             } catch (e: Exception) {
                 throw e
             }
             try {
                 secondArgumentDouble = secondArgument.toDouble()
             } catch (e: NumberFormatException) {
-                throw Exception(App.appResources.getString(R.string.incorrect_input_second_argument))
+                throw Exception(res.getString("incorrect_input_second_argument"))
             } catch (e: Exception) {
                 throw e
             }
@@ -112,19 +110,19 @@ class CalcViewModel(
                 CalcActions.MINUS -> firstArgumentDouble - secondArgumentDouble
                 CalcActions.MULTIPLY -> firstArgumentDouble * secondArgumentDouble
                 CalcActions.DIVIDE -> firstArgumentDouble / secondArgumentDouble
-                else -> throw Exception(App.appResources.getString(R.string.unknown_action))
+                else -> throw Exception(res.getString("unknown_action"))
             }
             var strResult = result.toString()
             if (strResult.equals(
-                    App.appResources.getString(R.string.nan),
+                    res.getString("nan"),
                     ignoreCase = true
                 )
-            ) throw Exception(App.appResources.getString(R.string.incorrect_operation))
+            ) throw Exception(res.getString("incorrect_operation"))
             if (abs(strResult).equals(
-                    App.appResources.getString(R.string.infinity),
+                    res.getString("infinity"),
                     ignoreCase = true
                 )
-            ) strResult = App.appResources.getString(R.string.infinity_symbol)
+            ) strResult = res.getString("infinity_symbol")
             if (strResult.endsWith(".0")) strResult = strResult.substring(0, strResult.length - 2)
             repo.clear()
             repo.setFirstArgument(strResult)

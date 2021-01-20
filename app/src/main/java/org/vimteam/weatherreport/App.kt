@@ -8,13 +8,8 @@ import org.vimteam.weatherreport.main.MainModule
 
 class App: Application() {
 
-    companion object {
-        lateinit var appResources: Resources
-    }
-
     override fun onCreate() {
         super.onCreate()
-        appResources = resources
         startKoin {
             androidContext(this@App)
             modules(
