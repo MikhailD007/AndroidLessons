@@ -12,6 +12,7 @@ import org.vimteam.weatherreport.R
 import org.vimteam.weatherreport.main.base.vibratePhone
 import org.vimteam.weatherreport.main.domain.mappers.CalcButtonMapper
 import org.vimteam.weatherreport.main.domain.contracts.KeyboardContract
+import org.vimteam.weatherreport.main.ui.adapters.ButtonAdapter
 
 class KeyboardFragment : Fragment() {
 
@@ -26,7 +27,7 @@ class KeyboardFragment : Fragment() {
 
         val buttons = resources.getStringArray(R.array.buttons)
         val btnAdapter =
-            ArrayAdapter(requireContext(), R.layout.keyboard_grid_item, R.id.btnGrid, buttons)
+            ButtonAdapter(requireContext(), R.layout.keyboard_grid_item, R.id.btnGrid, buttons)
         val btn = rootView.findViewById<View>(R.id.gridViewButtons) as GridView
         btn.adapter = btnAdapter
         btn.onItemClickListener = OnItemClickListener { _, _, position, _ ->
@@ -36,7 +37,6 @@ class KeyboardFragment : Fragment() {
                 digit = CalcButtonMapper.getDigitValue(position)
             )
         }
-
         return rootView
     }
 
