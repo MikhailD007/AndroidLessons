@@ -6,13 +6,10 @@
 
     <GridView
         android:id="@+id/gridViewButtons"
+        style="@style/CalcKeyboardStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/keyboard_frame_height"
-        android:background="@color/purple_700"
-        android:horizontalSpacing="@dimen/spacing"
         android:numColumns="4"
-        android:padding="@dimen/spacing"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="@dimen/spacing" />
+        android:stretchMode="columnWidth" />
 
 </LinearLayout>

@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/ioTextView"
+        style="@style/CalcIOTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
+        android:layout_height="0dp"
         android:gravity="end|bottom"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:textSize="@dimen/io_text_size"
+        tools:text="123456.2\n+\n26545"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/baseline" />
 
     <View
