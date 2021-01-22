@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -21,6 +22,7 @@ import org.vimteam.weatherreport.R
 import org.vimteam.weatherreport.R.layout.activity_main
 import org.vimteam.weatherreport.main.base.MainConstants.LOG_TAG
 import org.vimteam.weatherreport.main.base.hideKeyboard
+import org.vimteam.weatherreport.main.base.setThemeFromPreferences
 import org.vimteam.weatherreport.main.domain.contracts.MainContract
 import java.util.*
 
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.setThemeFromPreferences()
         setContentView(activity_main)
         //vm = ViewModelProvider(this)[MainViewModel::class.java]
 
@@ -91,6 +94,14 @@ class MainActivity : AppCompatActivity() {
         openCalcButton.setOnClickListener {
             startActivity(Intent(this, CalcActivity::class.java))
         }
+        settingsButton.setOnClickListener {
+            startActivityForResult(Intent(this, SettingsActivity::class.java),0)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        recreate()
     }
 
     fun showError(message: String) {
@@ -99,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(findViewById(R.id.contentView), message, Snackbar.LENGTH_LONG).show()
     }
 
-    fun initDateTimePicker(title: String, isThemeDark: Boolean = false) {
+    private fun initDateTimePicker(title: String, isThemeDark: Boolean = false) {
         datePickerDialog = DatePickerDialog.newInstance { _, year, monthOfYear, dayOfMonth ->
             periodEditText.setText(
                 localeDateToString(
@@ -118,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun localeDateToString(date: LocalDate, locale: Locale = Locale.getDefault()): String {
+    private fun localeDateToString(date: LocalDate, locale: Locale = Locale.getDefault()): String {
         return date.toString(DateTimeFormat.shortDate().withLocale(locale))
     }
 }

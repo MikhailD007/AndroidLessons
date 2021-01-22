@@ -22,4 +22,6 @@
     <string name="no_action_specified">Не указана операция</string>
     <string name="unknown_action">Неизвестная операция</string>
     <string name="incorrect_operation">Некорректная операция</string>
+    <string name="settings">Настройки</string>
+    <string name="dark_theme_selector">Перейти на темную сторону</string>
 </resources>

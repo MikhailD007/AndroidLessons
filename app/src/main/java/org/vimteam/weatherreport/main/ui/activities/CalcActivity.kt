@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_calc.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.vimteam.weatherreport.R
+import org.vimteam.weatherreport.main.base.setThemeFromPreferences
 import org.vimteam.weatherreport.main.domain.mappers.CalcButtonMapper
 import org.vimteam.weatherreport.main.domain.mappers.CalcButtonMapper.*
 import org.vimteam.weatherreport.main.domain.contracts.CalcContract
@@ -19,6 +20,7 @@ class CalcActivity : AppCompatActivity(), KeyboardContract {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.setThemeFromPreferences()
         setContentView(R.layout.activity_calc)
         initView()
 

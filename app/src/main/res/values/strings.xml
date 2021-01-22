@@ -53,4 +53,7 @@
     <string name="no_action_specified">No action specified</string>
     <string name="unknown_action">Unknown action specified</string>
     <string name="nan" translatable="false">NaN</string>
+    <string name="settings">Settings</string>
+    <string name="dark_theme_selector">Turn to the dark side</string>
+    <string name="dark_theme_selector_key" translatable="false">darkThemeSelector</string>
 </resources>

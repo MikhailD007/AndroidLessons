@@ -8,6 +8,8 @@ import android.os.Vibrator
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceManager
+import org.vimteam.weatherreport.R
 
 fun Fragment.vibratePhone() {
     val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -33,4 +35,13 @@ fun Activity.showKeyboard(view: View) {
         view,
         InputMethodManager.SHOW_IMPLICIT
     )
+}
+
+fun Activity.setThemeFromPreferences() {
+    if (PreferenceManager.getDefaultSharedPreferences(this)
+            .getBoolean(getString(R.string.dark_theme_selector_key), false)
+    )
+        setTheme(R.style.AppThemeDark)
+    else
+        setTheme(R.style.AppThemeLight)
 }
