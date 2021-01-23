@@ -3,8 +3,8 @@ package org.vimteam.weatherreport.main.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -94,14 +94,14 @@ class MainActivity : AppCompatActivity() {
         openCalcButton.setOnClickListener {
             startActivity(Intent(this, CalcActivity::class.java))
         }
-        settingsButton.setOnClickListener {
-            startActivityForResult(Intent(this, SettingsActivity::class.java),0)
+        val settingsActivityResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            recreate()
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        recreate()
+        settingsButton.setOnClickListener {
+            settingsActivityResult.launch(
+                Intent(this, SettingsActivity::class.java)
+            )
+        }
     }
 
     fun showError(message: String) {
